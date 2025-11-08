@@ -5,17 +5,20 @@ import 'dart:math';
 
 void main() {
   // 1. Create a List<String> of student names: ["Alice", "Bob", "Charlie", "Diana", "Eve"]
-  // TODO: Create the student names list
-  List<String> studentNames = []; // TODO: Add the student names
+
+  List<String> studentNames = ["Alice", "Bob", "Charlie", "Diana", "Eve"];
   
   // 2. Create a Map<String, int> to store student scores
   // TODO: Create the scores map
   Map<String, int> studentScores = {}; // TODO: Initialize the map
   
   // 3. Use a for loop to assign random scores (60-100) to each student
-  // TODO: Implement the for loop to assign random scores
+
   Random random = Random();
-  // TODO: Add your for loop here
+  for (String student in studentNames){
+    int score = 60 + random.nextInt(41);
+    studentScores[student] = score;
+  }
   
   // 4. Find and display:
   //    - The student with the highest score
@@ -27,8 +30,20 @@ void main() {
   String lowestStudent = "";
   int lowestScore = 100;
   double averageScore = 0.0;
+  double totalScore = 0.0;
   
-  // TODO: Add your logic here
+  studentScores.forEach((student, score) {
+    totalScore += score;
+    if (score > highestScore){
+      highestScore = score;
+      highestStudent = student;
+    }
+    if (score < lowestScore){
+      lowestScore = score;
+      lowestStudent = student;
+    }
+  });
+  averageScore = totalScore / studentScores.length;
   
   print("Student Scores: $studentScores");
   print("Highest Score: $highestStudent with $highestScore");
@@ -44,8 +59,7 @@ void main() {
   for (String student in studentNames) {
     int score = studentScores[student] ?? 0;
     String category = "";
-    
-    // TODO: Add your switch statement here
+
     switch (score ~/ 10) {
       case 10:
       case 9:
