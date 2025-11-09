@@ -6,13 +6,14 @@
 //    - Method: void processPayment(double amount)
 mixin Payable {
   double calculateSalary(double baseSalary, double bonus) {
-    // TODO: Calculate total salary (base + bonus)
-    return 0.0; // Placeholder - replace with actual implementation
+    double salary = baseSalary + bonus;
+    print("Calculated total salary: \$${salary.toStringAsFixed(2)}");
+    return salary; // Placeholder - replace with actual implementation
   }
   
   void processPayment(double amount) {
-    // TODO: Process payment
-    // Add your implementation here
+    print("Processing payment of \$${amount.toStringAsFixed(2)}...");
+    print("Payment successful.\n");
   }
 }
 
@@ -20,8 +21,9 @@ mixin Payable {
 //    - Method: String generateReport(String employeeName, String department)
 mixin Reportable {
   String generateReport(String employeeName, String department) {
-    // TODO: Generate report
-    return ""; // Placeholder - replace with actual implementation
+    return "Report Generated for $employeeName (Department: $department)\n"
+        "Performance: Excellent\n"
+        "Department Efficiency: 95%\n";
   }
 }
 
@@ -40,9 +42,10 @@ abstract class Employee {
   double getBaseSalary();
   
   void displayInfo() {
+    print("Employee Info:");
     print("$name (ID: $id, Department: $department)");
     print("Job Title: ${getJobTitle()}");
-    print("Base Salary: ${getBaseSalary()}");
+    print("Base Salary: ${getBaseSalary().toStringAsFixed(2)}");
   }
 }
 
@@ -57,20 +60,21 @@ class Manager extends Employee with Payable, Reportable {
   
   @override
   String getJobTitle() {
-    // TODO: Return manager job title
-    return ""; // Placeholder - replace with actual implementation
+    return "Manager";
   }
   
   @override
   double getBaseSalary() {
-    // TODO: Return manager base salary
-    return 0.0; // Placeholder - replace with actual implementation
+    return 1500.0;
   }
   
   @override
   void displayInfo() {
-    // TODO: Override to show manager-specific info
-    // Add your implementation here
+    print("Manager Info:");
+    print("$name (ID: $id, Department: $department)");
+    print("Team Size: $teamSize");
+    print("Job Title: ${getJobTitle()}");
+    print("Base Salary: ${getBaseSalary().toStringAsFixed(2)}");
   }
 }
 
@@ -84,20 +88,21 @@ class Developer extends Employee with Payable {
   
   @override
   String getJobTitle() {
-    // TODO: Return developer job title
-    return ""; // Placeholder - replace with actual implementation
+    return "Developer";
   }
   
   @override
   double getBaseSalary() {
-    // TODO: Return developer base salary
-    return 0.0; // Placeholder - replace with actual implementation
+    return 1200.0;
   }
   
   @override
   void displayInfo() {
-    // TODO: Override to show developer-specific info
-    // Add your implementation here
+    print("Developer Info:");
+    print("$name (ID: $id, Department: $department)");
+    print("Programming Language: $programmingLanguage");
+    print("Job Title: ${getJobTitle()}");
+    print("Base Salary: ${getBaseSalary().toStringAsFixed(2)}");
   }
 }
 
@@ -107,8 +112,29 @@ void main() {
   //    - Payment processing
   //    - Report generation (for managers)
   //    - Display all employee information
+
+  Manager manager = Manager("Alice", "M101", "HR", 10);
+  Developer dev1 = Developer("Bob", "D201", "IT", "Dart");
+  Developer dev2 = Developer("Asif", "D202", "IT", "Python");
   
   // TODO: Create employees
+  List<Employee> employees = [manager, dev1, dev2];
+
+  for (var employee in employees){
+    employee.displayInfo();
+    print(".....................................................");
+
+    double bonus = employee is Manager ? 500.0:300.0;
+    double totolSalary = (employee as dynamic).calculateSalary(employee.getBaseSalary(), bonus);
+    (employee as dynamic).processPayment(totolSalary);
+
+    if (employee is Manager){
+      print(employee.generateReport(employee.name, employee.department));
+    }
+
+    print("--------------------------------------------------------\n");
+  }
+
   
   // TODO: Demonstrate salary calculation with bonus
   
