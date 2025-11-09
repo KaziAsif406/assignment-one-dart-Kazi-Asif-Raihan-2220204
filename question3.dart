@@ -19,27 +19,40 @@ class BankAccount {
   //    - deposit(double amount): Add money to account
   // TODO: Implement the deposit method
   void deposit(double amount) {
-    // TODO: Add the amount to balance
+    if (amount > 0) {
+      balance += amount;
+      print("Deposited \$${amount.toStringAsFixed(2)} to account $accountNumber");
+    }
+    else{
+      print(("Invalid deposit amount: \$${amount.toStringAsFixed(2)}"));
+    }
   }
   
   //    - withdraw(double amount): Remove money from account (check for sufficient funds)
   // TODO: Implement the withdraw method
   void withdraw(double amount) {
-    // TODO: Check for sufficient funds and subtract amount
-    // TODO: Print error message if insufficient funds
+    if (amount <= 0) {
+      print("Invalid withdrawal amount: \$${amount.toStringAsFixed(2)}");
+    }
+    else if (amount > balance){
+      print("Insufficient funds for withdrawal of \$${amount.toStringAsFixed(2)} from account $accountNumber");
+    }
+    else{
+      balance -= amount;
+      print("Withdrew \$${amount.toStringAsFixed(2)} from account $accountNumber");
+    }
   }
   
   //    - getBalance(): Return current balance
   // TODO: Implement the getBalance method
   double getBalance() {
-    // TODO: Return the current balance
-    return 0.0; // TODO: Replace with actual balance
+    return balance;
   }
   
   //    - displayAccountInfo(): Show account details
   // TODO: Implement the displayAccountInfo method
   void displayAccountInfo() {
-    // TODO: Display account information
+    print("Account: $accountNumber, Holder: $accountHolder, Type: $accountType, Balance: ${balance.toStringAsFixed(2)}");
   }
 }
 
@@ -56,13 +69,14 @@ void main() {
   BankAccount account3 = BankAccount("11111", "Charlie", "Savings");
   
   // TODO: Demonstrate depositing money
-  account1.deposit(1000.0);
-  account2.deposit(500.0);
-  account3.deposit(2000.0);
+  account1.deposit(1500.0);
+  account2.deposit(900.0);
+  account3.deposit(2500.0);
   
   // TODO: Demonstrate withdrawing money
-  account1.withdraw(200.0);
+  account1.withdraw(0.0);
   account2.withdraw(100.0);
+  account3.withdraw(0.03);
   
   // TODO: Display account information
   account1.displayAccountInfo();
