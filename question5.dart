@@ -21,9 +21,7 @@ mixin Payable {
 //    - Method: String generateReport(String employeeName, String department)
 mixin Reportable {
   String generateReport(String employeeName, String department) {
-    return "Report Generated for $employeeName (Department: $department)\n"
-        "Performance: Excellent\n"
-        "Department Efficiency: 95%\n";
+    return "Monthly report for $employeeName in $department department";
   }
 }
 
@@ -65,7 +63,7 @@ class Manager extends Employee with Payable, Reportable {
   
   @override
   double getBaseSalary() {
-    return 1500.0;
+    return 8000.0;
   }
   
   @override
@@ -88,12 +86,12 @@ class Developer extends Employee with Payable {
   
   @override
   String getJobTitle() {
-    return "Developer";
+    return "Senior Developer";
   }
   
   @override
   double getBaseSalary() {
-    return 1200.0;
+    return 6000.0;
   }
   
   @override
