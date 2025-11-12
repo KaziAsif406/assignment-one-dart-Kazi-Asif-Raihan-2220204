@@ -1,5 +1,4 @@
 // Question 4: Inheritance & Polymorphism (Difficulty: 4/5) ⭐⭐⭐⭐
-// TODO: Complete the following requirements:
 
 // 1. Abstract Class Vehicle:
 //    - Properties: String brand, String model, int year
@@ -19,11 +18,10 @@ abstract class Vehicle {
   
   // Concrete method
   void displayInfo() {
-    // TODO: Display vehicle information
     print("Vehicle Info: $year $brand $model");
   }
   
-  // Add a method to calculate vehicle age (current year - vehicle year)
+  // Calculate vehicle age (current year - vehicle year)
   int calculateAge() {
     var age = DateTime.now().year - year;
     return age;
@@ -80,16 +78,13 @@ class Motorcycle extends Vehicle {
 }
 
 void main() {
-  // 3. Create a list of vehicles and demonstrate polymorphism by calling start(), stop(), and displayInfo() on each vehicle
-
   List<Vehicle> vehicles = [
     Car("Toyota", "Camry", 2020, 4),
     Car("BMW", "M", 2021, 4),
     Motorcycle("Honda", "CBR", 2021, true),
     Motorcycle("Yamaha", "FZ-S", 2018, false),
   ];
-  
-  // TODO: Demonstrate polymorphism
+
   for (Vehicle vehicle in vehicles) {
     vehicle.displayInfo();
     vehicle.start();
